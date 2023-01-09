@@ -1,25 +1,52 @@
 {
   "name": "smoothing-generator",
   "displayName": "smoothing-generator",
-  "description": "smoothing vscode plugin",
-  "version": "0.0.1",
+  "description": "An extension to accelerate the process of developing applications with Vue, aimed at everyone using the Vue-Template.",
+  "version": "0.0.2",
   "engines": {
     "vscode": "^1.74.0"
   },
   "categories": [
+    "Snippets",
+    "Programming Languages",
     "Other"
   ],
   "activationEvents": [
-    "onCommand:smoothing-generator.helloWorld"
+    "onCommand:smoothing-generator.generatorModule"
   ],
+  "keywords": [
+		"vue-modules"
+	],
+  "repository": {
+		"type": "git",
+		"url": "https://github.com/GGupzHH/smoothing-generator.git"
+	},
+  "author": "Smoothness",
+  "bugs": {
+		"url": "https://github.com/GGupzHH/smoothing-generator/issues"
+	},
   "main": "./out/extension.js",
   "contributes": {
+    "snippets": [
+			{
+				"language": "vue",
+				"path": "./snippets/snippets.json"
+			}
+		],
     "commands": [
       {
-        "command": "smoothing-generator.helloWorld",
-        "title": "Hello World"
+        "command": "smoothing-generator.generatorModule",
+        "title": "Smoothing:create module Template"
       }
-    ]
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "smoothing-generator.generatorModule",
+          "group": "navigation"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "pnpm run compile",
