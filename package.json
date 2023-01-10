@@ -30,20 +30,41 @@
     "snippets": [
 			{
 				"language": "vue",
-				"path": "./snippets/snippets.json"
+				"path": "./snippets/vue.snippets.json"
+			},
+			{
+				"language": "typescript",
+				"path": "./snippets/pinia.snippets.json"
+			},
+			{
+				"language": "typescript",
+				"path": "./snippets/vue-ts.snippets.json"
+			},
+			{
+				"language": "html",
+				"path": "./snippets/vue-pug.snippets.json"
 			}
 		],
     "commands": [
       {
         "command": "smoothing-generator.generatorModule",
-        "title": "Smoothing:create module Template"
+        "title": "Smo: Create Module Template"
       }
     ],
     "menus": {
-      "explorer/context": [
+      "explorer/context": [],
+      "commandPalette": [
         {
           "command": "smoothing-generator.generatorModule",
-          "group": "navigation"
+          "when": "editorLangId == dart"
+        },
+        {
+          "command": "smoothing-generator.generatorModule",
+          "when": "editorLangId == dart"
+        },
+        {
+          "command": "smoothing-generator.generatorModule",
+          "when": "editorLangId == dart"
         }
       ]
     }

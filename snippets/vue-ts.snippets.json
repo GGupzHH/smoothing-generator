@@ -1,0 +1,34 @@
+{
+  "smoothing generator handleFunction": {
+		"prefix": "smo-handleFunction",
+		"body": [
+			"const handle$1 = () => {",
+			"}"
+		],
+		"description": "Create Handle Function"
+	},
+
+	"smoothing generator init Vue-Router": {
+		"prefix": "smo-init-router",
+		"body": [
+			"const router = useRouter()"
+		],
+		"description": "Create Vue Router"
+	},
+
+	"smoothing generator init Vue-Route": {
+		"prefix": "smo-init-route",
+		"body": [
+			"const route = useRoute()"
+		],
+		"description": "Create Vue Route"
+	},
+
+	"smoothing generator init Pinia-store": {
+		"prefix": "smo-init-store",
+		"body": [
+			"const storeUse$1 = use$1()"
+		],
+		"description": "Create Pinia Store"
+	}
+}
