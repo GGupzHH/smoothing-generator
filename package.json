@@ -52,19 +52,11 @@
       }
     ],
     "menus": {
-      "explorer/context": [],
-      "commandPalette": [
+      "explorer/context": [
         {
           "command": "smoothing-generator.generatorModule",
-          "when": "editorLangId == dart"
-        },
-        {
-          "command": "smoothing-generator.generatorModule",
-          "when": "editorLangId == dart"
-        },
-        {
-          "command": "smoothing-generator.generatorModule",
-          "when": "editorLangId == dart"
+          "group": "blocGroup@1",
+          "when": "explorerResourceIsFolder"
         }
       ]
     }
