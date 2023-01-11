@@ -10,7 +10,7 @@ export function activate(context: vscode.ExtensionContext) {
 	
 	context.subscriptions.push(
 		vscode.commands.registerCommand(
-			'smoothing-generator.generator-module',
+			'smoothing.generator-module',
 			commands.newGetxGetBuilderPage
 		)
 	);

@@ -2,7 +2,7 @@
   "name": "smoothing-generator",
   "displayName": "smoothing-generator",
   "description": "An extension to accelerate the process of developing applications with Vue, aimed at everyone using the Vue-Template.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "engines": {
     "vscode": "^1.74.0"
   },
@@ -12,7 +12,7 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:smoothing-generator.generator-module"
+    "onCommand:smoothing.generator-module"
   ],
   "keywords": [
     "vue-modules"
@@ -47,14 +47,14 @@
     ],
     "commands": [
       {
-        "command": "smoothing-generator.generator-module",
+        "command": "smoothing.generator-module",
         "title": "Smo: Create Module Template"
       }
     ],
     "menus": {
       "explorer/context": [
         {
-          "command": "smoothing-generator.generator-module",
+          "command": "smoothing.generator-module",
           "group": "blocGroup@1",
           "when": "explorerResourceIsFolder"
         }

@@ -3,29 +3,21 @@ import * as changeCase from "change-case";
 import mkdirp from "mkdirp";
 import { InputBoxOptions, OpenDialogOptions, Uri, window } from "vscode";
 import { existsSync, lstatSync, writeFile } from "fs";
-import {
-  controllerTemplate,
-  indexTemplate,
-  viewTemplate,
-} from "../templates/getx-getbuilder-page.template";
+import generatorTemplate from "../templates/generator.module.template";
 
 export const newGetxGetBuilderPage = async (uri: Uri) => {
-  console.log(uri);
   const pageName = await promptForPageName();
   if (_.isNil(pageName) || pageName.trim() === "") {
     window.showErrorMessage("The name must not be empty");
     return;
   }
-
+  
   let targetDirectory = uri.fsPath;
-  console.log(targetDirectory);
-
+  
   const pascalCasepageName = changeCase.pascalCase(pageName.toLowerCase());
+
   try {
-    await generateCode(pageName, targetDirectory);
-    window.showInformationMessage(
-      `Successfully Generated ${pascalCasepageName} Getx Page`
-    );
+    await generateCode(pageName, pascalCasepageName, targetDirectory);
   } catch (error) {
     window.showErrorMessage(
       `Error:
@@ -36,7 +28,7 @@ export const newGetxGetBuilderPage = async (uri: Uri) => {
 
 function promptForPageName(): Thenable<string | undefined> {
   const namePromptOptions: InputBoxOptions = {
-    prompt: "Input Page Name",
+    prompt: "Input Module Name",
     // placeHolder: "counter",
   };
   return window.showInputBox(namePromptOptions);
@@ -68,16 +60,30 @@ function createDirectory(targetDirectory: string): Promise<void> {
   });
 }
 
-async function generateCode(pageName: string, targetDirectory: string) {
-  const pageDirectoryPath = `${targetDirectory}/${pageName}`;
+async function generateCode(pageName: string, pascalCasepageName: string, targetDirectory: string) {
+  const pageDirectoryPath = `${targetDirectory}/${pascalCasepageName}`;
+  const fileList = [
+    '',
+    'api',
+    'components',
+    'pages',
+    'store',
+  ];
   if (!existsSync(pageDirectoryPath)) {
-    await createDirectory(pageDirectoryPath);
-    await createDirectory(`${pageDirectoryPath}/widgets`);
+    fileList.map(async (file: string) => {
+      await createDirectory(`${pageDirectoryPath}/${file}`);
+    });
 
     await Promise.all([
-      indexTemplate(pageName, targetDirectory),
-      controllerTemplate(pageName, targetDirectory),
-      viewTemplate(pageName, targetDirectory),
+      generatorTemplate.apiTemplate(pageName, targetDirectory),
+      generatorTemplate.pageTemplate(pageName, targetDirectory),
+      generatorTemplate.storeTemplate(pageName, targetDirectory),
     ]);
+
+    window.showInformationMessage(
+      `Successfully Generated ${pascalCasepageName} Modules`
+    );
+  } else { 
+    window.showErrorMessage("The file already exists in the current directory.");
   }
 }
