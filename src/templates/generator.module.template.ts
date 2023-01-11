@@ -11,7 +11,7 @@ import { existsSync, lstatSync, writeFile } from "fs";
 function apiTemplate(pageName: string, targetDirectory: string) {
   const pascalCaseName = changeCase.pascalCase(pageName.toLowerCase());
   const snakeCaseName = changeCase.snakeCase(pageName.toLowerCase());
-  const targetPath = `${targetDirectory}/${pageName}/api/api.ts`;
+  const targetPath = `${targetDirectory}/${pascalCaseName}/api/api.ts`;
   const template = `
 import request from '@/utils/request'
 const ${snakeCaseName}Api = {
@@ -38,7 +38,7 @@ export default ${snakeCaseName}Api
 function pageTemplate(pageName: string, targetDirectory: string) {
   const pascalCaseName = changeCase.pascalCase(pageName.toLowerCase());
   const snakeCaseName = changeCase.snakeCase(pageName.toLowerCase());
-  const targetPath = `${targetDirectory}/${pageName}/pages/${snakeCaseName}.vue`;
+  const targetPath = `${targetDirectory}/${pascalCaseName}/pages/${snakeCaseName}.vue`;
   const template = `
 <template>
 
@@ -78,7 +78,7 @@ const proxy = getCurrentInstance()?.proxy
 function storeTemplate(pageName: string, targetDirectory: string) {
   const pascalCaseName = changeCase.pascalCase(pageName.toLowerCase());
   const snakeCaseName = changeCase.snakeCase(pageName.toLowerCase());
-  const targetPath = `${targetDirectory}/${pageName}/store/index.ts`;
+  const targetPath = `${targetDirectory}/${pascalCaseName}/store/index.ts`;
   const template = `
 import { defineStore } from 'pinia'
 import ${snakeCaseName}Api from 'modules/${pascalCaseName}/api'

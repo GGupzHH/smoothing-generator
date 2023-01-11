@@ -81,6 +81,7 @@ function createDirectory(targetDirectory) {
     });
 }
 async function generateCode(pageName, pascalCasepageName, targetDirectory) {
+    console.log(123111);
     const pageDirectoryPath = `${targetDirectory}/${pascalCasepageName}`;
     const fileList = [
         '',
@@ -90,15 +91,17 @@ async function generateCode(pageName, pascalCasepageName, targetDirectory) {
         'store',
     ];
     if (!(0, fs_1.existsSync)(pageDirectoryPath)) {
-        fileList.map(async (file) => {
+        vscode_1.window.showInformationMessage(`Successfully Generated ${pascalCasepageName} Modules123`);
+        await fileList.forEach(async (file) => {
             await createDirectory(`${pageDirectoryPath}/${file}`);
         });
         await Promise.all([
             generator_module_template_1.default.apiTemplate(pageName, targetDirectory),
             generator_module_template_1.default.pageTemplate(pageName, targetDirectory),
             generator_module_template_1.default.storeTemplate(pageName, targetDirectory),
-        ]);
-        vscode_1.window.showInformationMessage(`Successfully Generated ${pascalCasepageName} Modules`);
+        ]).then(() => {
+            vscode_1.window.showInformationMessage(`Successfully Generated ${pascalCasepageName} Modules223`);
+        });
     }
     else {
         vscode_1.window.showErrorMessage("The file already exists in the current directory.");
