@@ -2,7 +2,7 @@
   "name": "smoothing-generator",
   "displayName": "smoothing-generator",
   "description": "An extension to accelerate the process of developing applications with Vue, aimed at everyone using the Vue-Template.",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "engines": {
     "vscode": "^1.74.0"
   },
