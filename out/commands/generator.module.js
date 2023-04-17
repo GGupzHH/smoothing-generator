@@ -33,6 +33,11 @@ const mkdirp_1 = __importDefault(require("mkdirp"));
 const vscode_1 = require("vscode");
 const fs_1 = require("fs");
 const generator_module_template_1 = __importDefault(require("../templates/generator.module.template"));
+/**
+ * @description: 开始
+ * @param {Uri} uri 当前路径
+ * @return {*}
+ */
 const newGetxGetBuilderPage = async (uri) => {
     const pageName = await promptForPageName();
     if (_.isNil(pageName) || pageName.trim() === "") {
@@ -50,6 +55,10 @@ const newGetxGetBuilderPage = async (uri) => {
     }
 };
 exports.newGetxGetBuilderPage = newGetxGetBuilderPage;
+/**
+ * @description: 获取用户输入的模块名称
+ * @return {*}
+ */
 function promptForPageName() {
     const namePromptOptions = {
         prompt: "Input Module Name",
@@ -57,19 +66,11 @@ function promptForPageName() {
     };
     return vscode_1.window.showInputBox(namePromptOptions);
 }
-async function promptForTargetDirectory() {
-    const options = {
-        canSelectMany: false,
-        openLabel: "Select a folder to create the page in",
-        canSelectFolders: true,
-    };
-    return vscode_1.window.showOpenDialog(options).then((uri) => {
-        if (_.isNil(uri) || _.isEmpty(uri)) {
-            return undefined;
-        }
-        return uri[0].fsPath;
-    });
-}
+/**
+ * @description: 创建文件目录
+ * @param {string} targetDirectory
+ * @return {*}
+ */
 function createDirectory(targetDirectory) {
     return new Promise((resolve, reject) => {
         (0, mkdirp_1.default)(targetDirectory, (error) => {
@@ -80,6 +81,13 @@ function createDirectory(targetDirectory) {
         });
     });
 }
+/**
+ * @description: 创建文件，写入代码片段
+ * @param {string} pageName
+ * @param {string} pascalCasepageName
+ * @param {string} targetDirectory
+ * @return {*}
+ */
 async function generateCode(pageName, pascalCasepageName, targetDirectory) {
     console.log(123111);
     const pageDirectoryPath = `${targetDirectory}/${pascalCasepageName}`;
